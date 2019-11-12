@@ -40,6 +40,7 @@ public class TaskReport {
     void success() {
         status = TaskStatus.SUCCESS.getFriendlyName();
         statusMessage = "Finished";
+        progress = 100d;
         finishedAt = System.currentTimeMillis();
     }
 

@@ -2,6 +2,7 @@ package com.omd.ws.task;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -14,6 +15,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableScheduling
 @EnableWebSocketMessageBroker
 @ConfigurationProperties(prefix = "ws.task")
+@ComponentScan(basePackages = "com.omd.ws.task")
 public class WsTaskConfiguration implements WebSocketMessageBrokerConfigurer {
 
     private boolean configWebsocketBroker = true;
@@ -47,10 +49,6 @@ public class WsTaskConfiguration implements WebSocketMessageBrokerConfigurer {
         return new SimpleTaskService(minsToKeepErroredTasks, threadCount, messageSender);
     }
 
-    @Bean
-    public Controller wsTaskController(TaskService taskService) {
-        return new Controller(taskService);
-    }
 
     private boolean configBroker() {
         if(configWebsocketBroker && taskMessageDestination != null) {

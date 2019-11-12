@@ -3,14 +3,16 @@ package com.omd.ws.task;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-public class Controller {
+@RestController
+public class WsTaskController {
 
     private TaskService taskService;
 
-    Controller(TaskService taskService) {
+    WsTaskController(TaskService taskService) {
         this.taskService = taskService;
     }
 
